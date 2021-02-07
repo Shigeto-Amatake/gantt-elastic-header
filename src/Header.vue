@@ -153,7 +153,7 @@ const defaultStyle = {
     overflow: "hidden",
     clear: "both",
     display: "flex",
-    "justify-content": "space-between"
+    "justify-content": "space-between",
   },
   "header-title": { float: "left" },
   "header-options": { float: "right" },
@@ -163,7 +163,7 @@ const defaultStyle = {
     "font-weight": "400",
     "line-height": "35px",
     "padding-left": "22px",
-    "letter-spacing": "1px"
+    "letter-spacing": "1px",
   },
   "header-title--html": {
     "font-size": "20px",
@@ -171,7 +171,7 @@ const defaultStyle = {
     "font-weight": "400",
     "line-height": "35px",
     "padding-left": "22px",
-    "letter-spacing": "1px"
+    "letter-spacing": "1px",
   },
   "header-btn-recenter": {
     background: "#95A5A6",
@@ -182,28 +182,29 @@ const defaultStyle = {
     "border-radius": "3px",
     "margin-right": "27px",
     "font-size": "16px",
-    padding: "8px 12px"
+    padding: "8px 12px",
   },
   "header-slider": {
-    "box-sizing": "content-box"
+    "box-sizing": "content-box",
   },
   "header-slider-wrapper": {
     display: "inline-block",
-    "vertical-align": "middle"
+    "vertical-align": "middle",
   },
   "header-slider--slider": { "box-sizing": "content-box" },
   "header-slider--process": { "box-sizing": "content-box" },
   "header-task-list-switch--label": { "box-sizing": "content-box" },
   "header-task-list-switch": {
     margin: "0px 15px",
-    "vertical-align": "middle"
+    "vertical-align": "middle",
   },
-  "header-label": {}
+  "header-label": {},
 };
 const defaultOptions = {
   title: {
-    label: "gantt-elastic",
-    html: false
+    // label: "gantt-elastic",
+    label: "現場スケジュール",
+    html: false,
   },
   locale: {
     Now: "Now",
@@ -211,14 +212,14 @@ const defaultOptions = {
     "Y-Scale": "Zoom-Y",
     "Task list width": "Task list",
     "Before/After": "Expand",
-    "Display task list": "Show task list"
-  }
+    "Display task list": "Show task list",
+  },
 };
 export default {
   name: "GanttHeader",
   components: {
     vueSlider,
-    Switches
+    Switches,
   },
   props: ["options", "dynamicStyle"],
   inject: ["root"],
@@ -232,11 +233,11 @@ export default {
       localPercent: 0,
       sliderOptions: {
         xScale: {
-          value: 0
-        }
+          value: 0,
+        },
       },
       style: {},
-      opts: {}
+      opts: {},
     };
   },
   created() {
@@ -250,7 +251,7 @@ export default {
   },
   methods: {
     getImage() {
-      this.root.getImage("image/png").then(imgB64 => {
+      this.root.getImage("image/png").then((imgB64) => {
         const link = document.createElement("a");
         link.href = imgB64;
         link.download = "gantt-elastic.png";
@@ -277,7 +278,7 @@ export default {
         this.root.$emit("times-timeZoom-change", value);
         this.firstScale = true;
       }
-    }
+    },
   },
   computed: {
     /**
@@ -311,7 +312,7 @@ export default {
       set(value) {
         this.localScale = Number(value);
         this.setScale(this.localScale);
-      }
+      },
     },
     height: {
       get() {
@@ -320,7 +321,7 @@ export default {
       set(value) {
         this.localHeight = Number(value);
         this.root.$emit("row-height-change", Number(value));
-      }
+      },
     },
     scope: {
       get() {
@@ -329,7 +330,7 @@ export default {
       set(value) {
         this.localBefore = Number(value);
         this.root.$emit("scope-change", Number(value));
-      }
+      },
     },
     divider: {
       get() {
@@ -338,8 +339,8 @@ export default {
       set(value) {
         this.localPercent = Number(value);
         this.root.$emit("taskList-width-change", Number(value));
-      }
-    }
-  }
+      },
+    },
+  },
 };
 </script>
